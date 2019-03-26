@@ -5,15 +5,16 @@
 #include <utils/String16.h>
 #include <utils/Vector.h>
 #include <binder/Parcel.h>
+#include <utils/RefBase.h>
 
 namespace android {
-	class IMyService : public Interface {
+	class IMyService : public IInterface {
 	public:
-		DECALRE_META_INTERFACE(MyService);
+		DECLARE_META_INTERFACE(MyService);
 		virtual void sayHello() = 0;
-		IMyService();
-		~IMyService();
-		emum {
+		// IMyService();
+		// ~IMyService();
+		enum {
 			HELLO = 1,
 		};
 	};
@@ -25,18 +26,16 @@ namespace android {
 	public:
 		BpMyService(const sp<IBinder>& impl);
 		virtual void sayHello();
-		BpMyService();
-		~BpMyService();
+		// BpMyService();
+		// ~BpMyService();
 		
 	};
 
-	class BnService : public BnInterface<IMyService>
+	class BnMyService : public BnInterface<IMyService>
 	{
 	public:
 		virtual status_t onTransact(uint32_t code, const Parcel& data, Parcel* reply, uint32_t falgs = 0);
 		virtual void sayHello();
-		BnService();
-		~BnService();
 	};
 };
 

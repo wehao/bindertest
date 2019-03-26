@@ -11,7 +11,7 @@ namespace android {
 	void BpMyService::sayHello() {
 		printf("BpMyService::sayHello\n");
 		Parcel data, reply;
-		data.writeInterfaceTokenm(IMyService::getInterfaceDescriptor());
+		data.writeInterfaceToken(IMyService::getInterfaceDescriptor());
 		remote()->transact(HELLO, data, &reply);
 		printf("get num from BnMyService: %d \n", reply.readInt32());
 	}
@@ -34,4 +34,4 @@ namespace android {
 	void BnMyService::sayHello() {
 		printf("BnMyService::sayHello\n");
 	}
-}
+};
